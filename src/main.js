@@ -1,1 +1,3 @@
-import "./styles/input.css";
+import { router } from "./js/routes/router"
+
+router()

@@ -1,15 +1,13 @@
-<!doctype html>
-<html lang="es">
+import "../../styles/global.css"
+import "../../styles/login.css"
+import "../../styles/input.css"
+import { getData } from "../services/userService"
+import { organizerView } from "./organizer"
+import { router } from "../routes/router"
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login | MaraTune</title>
-</head>
 
-<body>
-   
-  <main class="">
+export function loginView(){
+    return `<main>
 
     
     <div class="login-container">
@@ -38,13 +36,17 @@
                 <div class="input-group">
                     <label for="password">Password</label>
                     <input type="password" name="password" placeholder="********" required>
+
+                    <div id="incorrect-data">
+                    <!-- <p>Incorrect email or password</p> -->
+                    </div>
                 </div>
 
                 <button id="login-btn" type="submit">Log in</button>
 
                 <div class="division"><span>or continue with</span></div>
 
-                <button id="google"><img src="../assets/icons/google.png" width="25px"></button>
+                <button id="google"><img src="../../assets/icons/google.png" width="25px"></button>
             </form>
 
             <div id="register">
@@ -54,11 +56,44 @@
 
     </div>
 
-  </main>
+  </main>`
+}
 
-  <script type="module" src="../js/auth/login.js"></script>
+export function loginEvents(){
 
-</body>
+    const form = document.querySelector('#login')
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault()
+
+        const email = e.target.email.value
+        const password = e.target.password.value
+
+        const users = await getData()
+        
+        const user = users.find(user => {
+            return user.email === email && user.password === password
+        })
+
+        if (!user){
+            alert("Credenciales incorrectas")
+            return
+        } else if (user.role === "runner"){
+            history.pushState({}, "", "/runner")
+        } else if (user.role === "organizer"){
+            history.pushState({}, "", "/organizer")
+        } else if (user.role === "sponsor"){
+            history.pushState({}, "", "/sponsor")
+        }
+
+        localStorage.setItem("user", JSON.stringify(user))
+
+        router()
+
+        
+
+}
+)
 
 
-</html>
+}
