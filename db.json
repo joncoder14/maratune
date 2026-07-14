@@ -1,0 +1,25 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Omar",
+      "email": "runner@maratune.com",
+      "password": "123456",
+      "role": "runner"
+    },
+    {
+      "id": 2,
+      "name": "Laura",
+      "email": "organizer@maratune.com",
+      "password": "123456",
+      "role": "organizer"
+    },
+    {
+      "id": 3,
+      "name": "Carlos",
+      "email": "sponsor@maratune.com",
+      "password": "123456",
+      "role": "sponsor"
+    }
+  ]
+}

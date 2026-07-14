@@ -1,1 +1,3 @@
-import "./style.css";
+import { router } from "./js/routes/router"
+
+router()

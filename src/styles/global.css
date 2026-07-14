@@ -1,0 +1,120 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+
+    /* ===========================
+       BRAND COLORS
+    =========================== */
+
+    --primary: #16A34A;
+    /* Verde MaraTune */
+    --primary-light: #22C55E;
+    --primary-dark: #15803D;
+    --primary-hover: #166534;
+
+    --secondary: #DC2626;
+    /* Rojo MaraTune */
+    --secondary-light: #EF4444;
+    --secondary-dark: #B91C1C;
+
+    --accent: #FACC15;
+    /* Amarillo MaraTune */
+    --accent-light: #FDE047;
+    --accent-dark: #EAB308;
+
+    /* ===========================
+       BACKGROUNDS
+    =========================== */
+
+    --background: #0F172A;
+    --background-secondary: #111827;
+    --surface: #1E293B;
+    --surface-light: #334155;
+
+    /* ===========================
+       TEXT
+    =========================== */
+
+    --text: #F8FAFC;
+    --text-secondary: #CBD5E1;
+    --text-muted: #94A3B8;
+    --text-disabled: #64748B;
+
+    /* ===========================
+       BORDERS
+    =========================== */
+
+    --border: #334155;
+    --border-light: #475569;
+    --border-focus: #22C55E;
+
+    /* ===========================
+       STATES
+    =========================== */
+
+    --success: #22C55E;
+    --warning: #F59E0B;
+    --error: #EF4444;
+    --info: #3B82F6;
+
+    --gradient-primary:
+        linear-gradient(135deg,
+            #22C55E,
+            #15803D);
+
+    --gradient-secondary:
+        linear-gradient(135deg,
+            #EF4444,
+            #B91C1C);
+
+    --gradient-background:
+        linear-gradient(180deg,
+            #0F172A,
+            #111827,
+            #1E293B);
+
+    --gradient-hero:
+        linear-gradient(90deg,
+            rgba(15, 23, 42, .75) 0%,
+            rgba(15, 23, 42, .35) 45%,
+            rgba(15, 23, 42, .10) 100%);
+
+    --shadow-small:
+        0 4px 10px rgba(0, 0, 0, .15);
+
+    --shadow-medium:
+        0 8px 25px rgba(0, 0, 0, .25);
+
+    --shadow-large:
+        0 20px 45px rgba(0, 0, 0, .35);
+
+    --radius-small: 8px;
+    --radius-medium: 14px;
+    --radius-large: 20px;
+    --radius-xl: 28px;
+
+    --transition: all .30s ease;
+}
+
+body{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: var(--background);
+    color: var(--text);
+}
+
+img{
+    display:block;
+    max-width:100%;
+}
+
+a{
+    text-decoration:none;
+}
+
+button{
+    font-family:inherit;
+}

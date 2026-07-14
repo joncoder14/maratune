@@ -1,0 +1,392 @@
+.login-container {
+    display: grid;
+    grid-template-columns: 60% 40%;
+    height: 100%;
+}
+
+main {
+    height: 100vh;
+}
+
+.hero-section {
+    height: 100%;
+    background-image: url(../assets/images/runner.png);
+    background-size: cover;
+    background-position: left;
+    background-repeat: no-repeat;
+    /* position: relative; */
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 35%;
+    padding-left: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    font-size: x-large;
+    text-shadow: 4px 4px 5px rgba(0, 0, 0, 1);
+}
+
+.text-overlay {
+    font-weight: 900;
+    opacity: .92;
+}
+
+.hero-overlay p {
+    color: var(--text-secondary);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    -webkit-text-stroke: .2px black;
+    margin-top: 20px;
+}
+
+#h1-connect {
+    /* color: var(--secondary-dark); */
+    color: #DC2626;
+}
+
+#h1-run {
+    /* color: var(--accent-dark); */
+    color: #FBBF24;
+}
+
+#h1-yourself {
+    /* color: var(--primary-hover); */
+    color: #16A34A;
+}
+
+.login-section {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    padding: 60px;
+}
+
+#login {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.login-section h1 {
+    color: var(--text);
+}
+
+.login-section p {
+    color: var(--text-muted);
+}
+
+.input-group label {
+    color: var(--text);
+    margin-bottom: 10px;
+}
+
+#incorrect-data{
+    text-align: center;
+    margin-top: 10px;
+}
+
+#incorrect-data p{
+    color: var(--error);
+    font-size: 15px;
+}
+
+#login input {
+    width: 100%;
+    height: 45px;
+    border-radius: 12px;
+    border: 2px solid var(--border-light);
+    padding: 10px;
+    transition: var(--transition);
+    background-color: var(--surface);
+    color: var(--text-muted);
+}
+
+#login input:focus-within {
+    border: 2px solid var(--border-focus);
+}
+
+#login input:focus {
+    outline: none;
+}
+
+#login-btn {
+    width: 100%;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--primary-dark);
+    transition: var(--transition);
+    cursor: pointer;
+    color: var(--text);
+    font-size: medium;
+    font-weight: bold;
+}
+
+#login-btn:hover {
+    background-color: var(--primary-light);
+    transform: translateY(-2px);
+}
+
+.division {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    margin: 20px;
+    width: 100%;
+}
+
+.division::before,
+.division::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background-color: var(--text-disabled);
+}
+
+.division span {
+    margin: 0 10px;
+    color: var(--text-disabled);
+    font-size: 14px;
+}
+
+#google {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    justify-content: center;
+    padding: 30px 20px;
+    background-color: var(--surface);
+    border: none;
+    border-radius: 8px;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+#google:hover {
+    background-color: var(--surface-light);
+    transform: translateY(-2px);
+}
+
+#register {
+    display: flex;
+    gap: 6px;
+}
+
+#register a {
+    color: var(--primary-dark);
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+#register a:hover {
+    color: var(--primary-light);
+}
+
+#welcome {
+    width: 100%;
+}
+
+/* ==========================================
+   LAPTOPS (1200px)
+========================================== */
+
+@media (max-width: 1200px) {
+
+    .login-container {
+        grid-template-columns: 55% 45%;
+    }
+
+    .hero-overlay {
+        padding-left: 40px;
+        font-size: 1.5rem;
+    }
+
+    .login-section {
+        padding: 40px;
+    }
+
+}
+
+
+/* ==========================================
+   TABLETS (992px)
+========================================== */
+
+@media (max-width: 992px) {
+
+    .hero-section {
+        display: none;
+    }
+
+    .login-container {
+        grid-template-columns: 1fr;
+    }
+
+    .login-section {
+        justify-content: center;
+        padding: 50px;
+    }
+
+}
+
+
+/* ==========================================
+   TABLETS PEQUEÑAS (768px)
+========================================== */
+
+@media (max-width:768px) {
+
+    .hero-section {
+
+        height: 35vh;
+
+    }
+
+    .hero-overlay {
+
+        padding-left: 30px;
+
+        font-size: 1.2rem;
+
+    }
+
+    .hero-overlay p {
+
+        width: 80%;
+
+        font-size: .95rem;
+
+    }
+
+    .login-section {
+
+        padding: 35px 25px;
+
+        gap: 30px;
+
+    }
+
+}
+
+
+/* ==========================================
+   CELULARES (576px)
+========================================== */
+
+@media (max-width:576px) {
+
+    .hero-section {
+
+        display: none;
+
+    }
+
+    .login-container {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .login-section {
+
+        justify-content: center;
+
+        padding: 30px 20px;
+
+        gap: 30px;
+
+    }
+
+    #welcome {
+
+        text-align: center;
+
+    }
+
+    #welcome h1 {
+
+        font-size: 2rem;
+
+    }
+
+    #welcome p {
+
+        font-size: .95rem;
+
+    }
+
+    #login {
+
+        gap: 25px;
+
+    }
+
+    .division {
+
+        margin: 10px 0;
+
+    }
+
+    #register {
+
+        flex-direction: column;
+
+        align-items: center;
+
+        gap: 8px;
+
+    }
+
+}
+
+
+/* ==========================================
+   CELULARES PEQUEÑOS (400px)
+========================================== */
+
+@media (max-width:400px) {
+
+    .login-section {
+
+        padding: 20px 15px;
+
+    }
+
+    #welcome h1 {
+
+        font-size: 1.7rem;
+
+    }
+
+    .input-group input {
+
+        height: 42px;
+
+    }
+
+    #login-btn {
+
+        height: 42px;
+
+    }
+
+    #google {
+
+        width: 100%;
+
+    }
+
+}
