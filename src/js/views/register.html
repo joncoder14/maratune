@@ -1,17 +1,10 @@
-import "../../styles/global.css"
-import "../../styles/register.css"
-import "../../styles/input.css"
-import logoHorizontal from "../../assets/logo/logo-horizontal.png";
-console.log("Register cargado correctamente");
-export function renderRegister() {
-return `
 <div class="register-container">
 
     <!-- Left Panel -->
 
     <div class="left-panel">
 
-       <img src="${logoHorizontal}" class="logo" alt="Maratune Logo">
+        <img src="logo/logo-orizontal.png" class="logo" alt="Maratune Logo">
 
         <div class="contenido">
 
@@ -57,7 +50,7 @@ return `
                     <input type="text" placeholder="Enter your full name">
                 </div>
 
-                <div class="input-group">
+                <div class="campo">
                     <label>Email Address</label>
                     <input type="email" placeholder="Enter your email address">
                 </div>
@@ -66,12 +59,12 @@ return `
 
             <div class="row">
 
-                <div class="input-group">
+                <div class="campo">
                     <label>Password</label>
                     <input type="password" placeholder="Create a password">
                 </div>
 
-                <div class="input-group">
+                <div class="campo">
                     <label>Confirm Password</label>
                     <input type="password" placeholder="Repeat your password">
                 </div>
@@ -148,5 +141,3 @@ return `
     </div>
 
 </div>
-`
-}
