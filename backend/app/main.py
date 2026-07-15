@@ -1,13 +1,18 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from sqlalchemy import select
+from app.routes.auth import router
 
-from app.db.database import SessionLocal
-from app.models import User
-from app.schemas import Login
 
 
 app = FastAPI()
+
+app.include_router(router) # registers a apirouter in the app
+
+
+
+
+
+
 
 origins = [
     "http://localhost:5173",
@@ -40,21 +45,9 @@ def register(user:UserRegister): # means user comes from request body and must f
 """
 
 
-@app.post("/login")
-def get_user_login(login:Login): # param user will be an instance of Login
-    db = SessionLocal()
-    user = db.scalar(select(User).where(User.email == login.email))
 
-    if user is None:
-        return{"message": "User not found"}
-    
-    elif user.password != login.password:
-        return {"message": "Incorrect password"} 
 
-    else:
-        return{
-            "message": "The login succesful"
-        }
+
     
 
 # URL = "https://maratune.onrender.com"
