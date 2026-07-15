@@ -46,7 +46,7 @@ export function loginView(){
 
                 <div class="division"><span>or continue with</span></div>
 
-                <button id="google"><img src="/src/assets/icons/google.png" width="25px"></button>
+                <div id="google"><img src="/src/assets/icons/google.png" width="25px"></div>        <!--agregarle la ruta-->
             </form>
 
             <div id="register">
