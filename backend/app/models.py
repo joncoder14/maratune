@@ -19,3 +19,5 @@ class User(Base):
     city: Mapped[str] = mapped_column(String)
     date_register: Mapped[date] = mapped_column(Date)
 
+
+

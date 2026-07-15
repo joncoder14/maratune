@@ -1,9 +1,9 @@
 from fastapi import FastAPI
 from sqlalchemy import select
 
-from db.database import SessionLocal
-from models import User
-from schemas import Login
+from app.db.database import SessionLocal
+from app.models import User
+from app.schemas import Login
 
 
 app = FastAPI()
@@ -41,3 +41,6 @@ def get_user_login(login:Login): # param user will be an instance of Login
         return{
             "message": "The login succesful"
         }
+    
+
+# URL = "http://127.0.0.1:8000/login"
