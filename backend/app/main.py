@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import select
 
 from app.db.database import SessionLocal
@@ -7,6 +8,19 @@ from app.schemas import Login
 
 
 app = FastAPI()
+
+origins = [
+    "http://localhost:5173",
+]
+
+app.add_middleware(CORSMiddleware, 
+                   allow_origins=origins,
+                   allow_credential=True,
+                   allow_methods=["*"],
+                   allow_headers=["*"],)
+
+
+
 """
 # Registro
 class UserRegister(BaseModel): # defines a data mold for user registration
@@ -43,4 +57,4 @@ def get_user_login(login:Login): # param user will be an instance of Login
         }
     
 
-# URL = "http://127.0.0.1:8000/login"
+# URL = "https://maratune.onrender.com"
