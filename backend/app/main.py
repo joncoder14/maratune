@@ -40,7 +40,7 @@ def register(user:UserRegister): # means user comes from request body and must f
 """
 
 
-@app.post("/login")
+@app.get("/login")
 def get_user_login(login:Login): # param user will be an instance of Login
     db = SessionLocal()
     user = db.scalar(select(User).where(User.email == login.email))
