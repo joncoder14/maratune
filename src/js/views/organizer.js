@@ -1,12 +1,83 @@
-export function organizerView(){
-    const user = JSON.parse(localStorage.getItem("user"))
+import { getEvents } from "../services/eventService"
+import "../../styles/global.css"
+import "../../styles/input.css"
+import "../../styles/dashboard-events.css"
 
-    return `
-    <h1>Hello ${user.name}, you are a Organizer<h1>
+export function organizerView(){
+
+  const user = JSON.parse(localStorage.getItem("user"))
+
+    return `<div class="dashboard">
+
+        <main class="events-container">
+
+            <header class="events-header">
+                <div class="">
+                    <h1>Search events</h1><br>
+                    <p>Find your next race and push your limits.</p>
+                </div>
+
+                <button id="logout-btn">Log out</button>
+            </header>
+
+            
+
+            <section class="search-section">
+                <input class="" type="text" placeholder="search a event">
+                <button class="search-btn">Search</button>
+            </section>
+
+            <h2>Upcoming events</h2>
+            
+            <section id="event-container" class="events-grid">
+
+            
+            </section>
+            
+            
+            
+            
+            
+            </main>
+            </div>
     `
 }
 
-export function organizerEvents(){
-    console.log("organizer cargado");
+export async function organizerEvents(){
+    const eventContainer = document.getElementById("event-container")
     
+        const events = await getEvents() 
+    
+        events.forEach(event => {
+           
+            eventContainer.innerHTML += `<article class="card-color">
+    
+                    <div class="event-card" >
+    
+    
+                        <div class="event-info">
+                            <h3>${event.name}</h3>
+                            <p>${event.city}</p>
+                            <p>${event.date_event}</p>
+                            <p>${event.cups}</p>
+                            
+                        </div>
+                        <div class="container-img">
+                            <img src="src/assets/logo/only-logo.png" width="200px" height="120px">
+                            
+    
+                        </div>
+                    </div>
+                    <div class="buttons">
+    
+                        <button id="suscribe-btn">Suscribe</button>
+                        <button id="details-btn">View details</button>
+                    
+                    
+                    </div>
+    
+    
+                  
+                </article>`
+        });
 }

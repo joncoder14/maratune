@@ -25,7 +25,14 @@ export function router(){
 
     document.querySelector('#app').innerHTML = route.path()
 
-    route.events()
+    route.path()
+
+    setTimeout(() => {
+        route.events()
+
+    }, 500)
+
+    
 }
 
 window.addEventListener("popstate", router)

@@ -35,3 +35,22 @@
     border-color:var(--border-focus);
 
 }
+
+.search-section input {
+    width: 100%;
+    height: 45px;
+    border-radius: 12px;
+    border: 2px solid var(--border-light);
+    padding: 10px;
+    transition: var(--transition);
+    background-color: var(--surface);
+    color: var(--text-muted);
+}
+
+.search-section input:focus-within {
+    border: 2px solid var(--border-focus);
+}
+
+.search-section input:focus {
+    outline: none;
+}

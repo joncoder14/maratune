@@ -1,8 +1,7 @@
 import "../../styles/global.css"
 import "../../styles/login.css"
 import "../../styles/input.css"
-import { getData } from "../services/userService"
-import { organizerView } from "./organizer"
+import { responseUser } from "../services/userService"
 import { router } from "../routes/router"
 
 
@@ -23,6 +22,7 @@ export function loginView(){
 
         <section class="login-section">
             <div id="welcome">
+                <i class="fa-solid fa-clock"></i>
                 <h1>¡Welcome!</h1><br>
                 <p>Log in to continue.</p>
             </div>
@@ -69,24 +69,37 @@ export function loginEvents(){
         const email = e.target.email.value
         const password = e.target.password.value
 
-        const users = await getData()
+        const response = await responseUser(email, password)
         
-        const user = users.find(user => {
-            return user.email === email && user.password === password
-        })
 
-        if (!user){
-            alert("Credenciales incorrectas")
+        if (!response.ok){
+            alert("credenciales incorrectas")
             return
-        } else if (user.role === "runner"){
+        } 
+        
+        const userLogin = await response.json()
+      
+
+        if(!userLogin.success){
+            alert(userLogin.message)
+            return
+        }
+        
+        
+        
+        localStorage.setItem("user", JSON.stringify(userLogin))
+
+        if (userLogin.role === "runner"){
             history.pushState({}, "", "/runner")
-        } else if (user.role === "organizer"){
+        } else if (userLogin.role === "organizer"){
             history.pushState({}, "", "/organizer")
-        } else if (user.role === "sponsor"){
+        } else if (userLogin.role === "sponsor"){
             history.pushState({}, "", "/sponsor")
         }
+        
 
-        localStorage.setItem("user", JSON.stringify(user))
+
+        
 
         router()
 

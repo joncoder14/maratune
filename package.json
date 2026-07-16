@@ -12,6 +12,10 @@
     "vite": "^8.1.1"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^7.3.1",
+    "@fortawesome/free-brands-svg-icons": "^7.3.1",
+    "@fortawesome/free-solid-svg-icons": "^7.3.1",
+    "@fortawesome/react-fontawesome": "^3.4.0",
     "@tailwindcss/vite": "^4.3.2",
     "tailwindcss": "^4.3.2"
   }
