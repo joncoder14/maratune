@@ -1,7 +1,7 @@
 """receives http requests"""
 from fastapi import APIRouter
-from schemas.auth_schema import Login
-from services.auth_service import login_user
+from schemas.user_schema import Login
+from app.services.login_service import login_user
 
 router = APIRouter()
 

@@ -1,10 +1,12 @@
 """INITILIZE FASTAPI AND REGISTER ROUTES"""
 from fastapi import FastAPI
-from routers.auth_router import router as auth_router
+from app.routers.login_router import router as auth_router
+from routers.event_router import router as event_router
 
 app = FastAPI()
 
 app.include_router(auth_router)
+app.include_router(event_router)
 
 from fastapi.middleware.cors import CORSMiddleware
 
