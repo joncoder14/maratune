@@ -1,3 +1,5 @@
 import { router } from "./js/routes/router"
 
-router()
+document.addEventListener("DOMContentLoaded", () => {
+    router()
+})
