@@ -1,5 +1,5 @@
 """Logic"""
-from app.database import get_connection
+from database import get_connection
 
 
 def login_user(login):
