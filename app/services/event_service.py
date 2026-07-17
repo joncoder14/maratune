@@ -114,7 +114,6 @@ def update_event(id_event, event):
             event.city if event.city is not None else current_event["city"],
             event.cups if event.cups is not None else current_event["cups"],
             event.status if event.status is not None else current_event["status"],
-            #event.id_event_organizer if event.id_event_organizer is not None else current_event["id_event_organizer"],
             id_event
         )
     )
