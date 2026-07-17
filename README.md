@@ -5,10 +5,12 @@ Maratune is a web application where runners canfind information about marathon e
 and register for events in a safe and easy way. It also allows marathon organizers to manage their events more easily and efficiently.
 
 ## technologies
+fronted
 - HTML
 - CSS
 - JavaScript
 - vite
+- font awesome
   
 
 Backend
