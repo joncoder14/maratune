@@ -1,3 +1,4 @@
+import '@fortawesome/fontawesome-free/css/all.min.css'
 import "../../styles/global.css"
 import "../../styles/login.css"
 import "../../styles/input.css"
@@ -22,7 +23,6 @@ export function loginView(){
 
         <section class="login-section">
             <div id="welcome">
-                <i class="fa-solid fa-clock"></i>
                 <h1>¡Welcome!</h1><br>
                 <p>Log in to continue.</p>
             </div>
@@ -50,7 +50,7 @@ export function loginView(){
             </form>
 
             <div id="register">
-            <p>Don't you have an account?</p><a href="">Sign up here</a>
+            <p>Don't you have an account?</p><a href="/register">Sign up here</a>
             </div>
         </section>
 
@@ -70,12 +70,6 @@ export function loginEvents(){
         const password = e.target.password.value
 
         const response = await responseUser(email, password)
-        
-
-        if (!response.ok){
-            alert("credenciales incorrectas")
-            return
-        } 
         
         const userLogin = await response.json()
       

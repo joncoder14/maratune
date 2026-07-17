@@ -2,16 +2,22 @@ import { loginView, loginEvents } from "../views/login"
 import { organizerView, organizerEvents } from "../views/organizer"
 import { runnerView, runnerEvents } from "../views/runner"
 import { sponsorView, sponsorEvents } from "../views/sponsor"
+import { myEventsView, myEventsEvents } from "../views/myEvents"
+import { registerView } from "../views/register"
 
 
 const routes = {
     "/": { path: loginView, events: loginEvents },
 
+    "/register": { path: registerView },
+
     "/organizer": { path: organizerView, events: organizerEvents },
 
     "/runner": { path: runnerView, events: runnerEvents },
 
-    "/sponsor": { path: sponsorView, events: sponsorEvents }
+    "/sponsor": { path: sponsorView, events: sponsorEvents },
+
+    "/my-events" : { path: myEventsView, events: myEventsEvents }
 }
 
 export function router(){
@@ -24,8 +30,6 @@ export function router(){
     }
 
     document.querySelector('#app').innerHTML = route.path()
-
-    route.path()
 
     setTimeout(() => {
         route.events()

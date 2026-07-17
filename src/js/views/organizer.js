@@ -7,7 +7,18 @@ export function organizerView(){
 
   const user = JSON.parse(localStorage.getItem("user"))
 
-    return `<div class="dashboard">
+    return `<nav>
+        <img src="src/assets/logo/logo-horizontal.png" alt="" width="150px">
+
+        <ul>
+            <li><a href="">Events</a></li>
+            <li><a href="">My events</a></li>
+        </ul>
+
+        <button id="logout-btn">Log out</button>
+    </nav>    
+    
+    <div class="dashboard">
 
         <main class="events-container">
 
@@ -16,8 +27,6 @@ export function organizerView(){
                     <h1>Search events</h1><br>
                     <p>Find your next race and push your limits.</p>
                 </div>
-
-                <button id="logout-btn">Log out</button>
             </header>
 
             

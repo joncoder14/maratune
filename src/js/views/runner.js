@@ -2,10 +2,25 @@ import { getEvents } from "../services/eventService"
 import "../../styles/global.css"
 import "../../styles/input.css"
 import "../../styles/dashboard-events.css"
-export function runnerView(){
-    const user = JSON.parse(localStorage.getItem("user"))
+import { router } from "../routes/router"
 
-    return `<div class="dashboard">
+
+export function runnerView(){
+    // const user = JSON.parse(localStorage.getItem("user"))
+
+    return `
+    <nav>
+        <img id="logo" src="src/assets/logo/logo-horizontal.png" alt="" width="150px">
+
+        <ul>
+            <li><a href="/runner" id="events-link">Events</a></li>
+            <li><a href="/my-events" id="my-events-link">My events</a></li>
+        </ul>
+
+        <button id="logout-btn">Log out</button>
+    </nav>    
+    
+    <div class="dashboard">
 
         <main class="events-container">
 
@@ -14,8 +29,6 @@ export function runnerView(){
                     <h1>Search events</h1><br>
                     <p>Find your next race and push your limits.</p>
                 </div>
-
-                <button id="logout-btn">Log out</button>
             </header>
 
             
@@ -55,9 +68,9 @@ export async function runnerEvents(){
     
                         <div class="event-info">
                             <h3>${event.name}</h3>
-                            <p>${event.city}</p>
-                            <p>${event.date_event}</p>
-                            <p>${event.cups}</p>
+                            <p><i id="icon-location" class="fa-solid fa-location-dot"></i> ${event.city}</p>
+                            <p><i id="icon-schedule" class="fa-regular fa-calendar"></i> ${event.date_event}</p>
+                            <p><i id="icon-dollar" class="fa-solid fa-dollar-sign"></i> ${event.cups}</p>
                             
                         </div>
                         <div class="container-img">
@@ -78,4 +91,24 @@ export async function runnerEvents(){
                   
                 </article>`
         });
+
+        const eventsLink = document.getElementById("events-link")
+
+        eventsLink.addEventListener("click", (e) => {
+            e.preventDefault()
+
+            history.pushState({}, "", "/runner")
+
+            router()
+        })
+
+        const myEvents = document.getElementById("my-events-link")
+
+        myEvents.addEventListener("click", (e) => {
+            e.preventDefault()
+
+            history.pushState({}, "", "/my-events")
+
+            router()
+        })
 }

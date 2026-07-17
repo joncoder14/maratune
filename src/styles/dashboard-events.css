@@ -150,20 +150,6 @@
     width: 100%;
 } */
 
-.search-btn{
-    background-color: var(--primary-light);
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: var(--transition);
-    color: var(--text);
-}
-
-.search-btn:hover{
-    background-color: var(--primary);
-    transform: translateY(-2px);
-}
-
 p{
     color: var(--text-muted);
 }
@@ -197,4 +183,16 @@ p{
 #suscribe-btn:hover{
     background-color: var(--accent-light);
     color: black;
+}
+
+#icon-location{
+    color: var(--secondary-light);
+}
+
+#icon-schedule{
+    color: var(--accent-light);
+}
+
+#icon-dollar{
+    color: var(--primary-light);
 }

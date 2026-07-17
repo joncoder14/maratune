@@ -119,3 +119,45 @@ a{
 button{
     font-family:inherit;
 }
+
+
+nav{
+    display: flex;
+    background-color: var(--background-secondary);
+    justify-content: space-between;
+    padding: 5px 15px 5px 15px;
+    border-bottom: .5px solid black;
+}
+
+nav ul{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+nav ul li{
+    list-style: none;
+}
+
+nav ul li a{
+    color: var(--text);
+    transition: var(--transition);
+}
+
+nav ul li a:hover{
+    color: var(--primary);
+}
+
+.search-btn{
+    background-color: var(--primary-light);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: var(--transition);
+    color: var(--text);
+}
+
+.search-btn:hover{
+    background-color: var(--primary);
+    transform: translateY(-2px);
+}
