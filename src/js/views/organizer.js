@@ -109,7 +109,6 @@ export async function createEvent () {
     const eventContainer = document.getElementById("events-container")
     let formContainer = undefined
     let containerFather = undefined
-    let idCreator = null
     const donebtn = document.getElementById("done-btn");
     const user = JSON.parse(localStorage.getItem("user"))
     const createBtn = document.getElementById("create-btn") 
