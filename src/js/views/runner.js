@@ -3,6 +3,7 @@ import "../../styles/global.css"
 import "../../styles/input.css"
 import "../../styles/dashboard-events.css"
 import { router } from "../routes/router"
+import { logout } from "../services/logoutService";
 
 
 export function runnerView(){
@@ -111,4 +112,5 @@ export async function runnerEvents(){
 
             router()
         })
+        logout();
 }

@@ -28,6 +28,19 @@ export function router(){
         document.querySelector('#app').innerHTML = "<h1>404</h1>"
         return
     }
+    const user = JSON.parse(localStorage.getItem("user"));
+
+const protectedRoutes = [
+    "/runner",
+    "/organizer",
+    "/sponsor",
+    "/my-events"
+];
+
+if (protectedRoutes.includes(path) && !user) {
+    history.pushState({}, "", "/");
+    return router();
+}
 
     document.querySelector('#app').innerHTML = route.path()
 

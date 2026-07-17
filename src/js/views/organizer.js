@@ -2,6 +2,7 @@ import { getEvents } from "../services/eventService"
 import "../../styles/global.css"
 import "../../styles/input.css"
 import "../../styles/dashboard-events.css"
+import { logout } from "../services/logoutService";
 
 export function organizerView(){
 
@@ -89,4 +90,5 @@ export async function organizerEvents(){
                   
                 </article>`
         });
+        logout();
 }
