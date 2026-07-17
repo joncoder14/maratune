@@ -196,3 +196,57 @@ p{
 #icon-dollar{
     color: var(--primary-light);
 }
+
+/* events-organizer */
+
+
+#create-btn{
+    background-color: var(--accent-light);
+    border: none;
+    padding: 10px 15px 10px 15px;
+    border-radius: 10px;
+    color: black;
+    transition: var(--transition);
+    cursor: pointer;
+
+}
+
+#create-btn:hover{
+    background-color: var(--accent-dark);
+}
+
+#form-container-father{
+    display: none;
+    height: 100vh;
+    inset: 0;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(10px);
+    
+}
+
+#form-container{
+    display: none;
+    
+    background: linear-gradient(to bottom, var(--secondary), var(--accent-dark), var(--primary-light)  );
+    height: 70%;
+    width: 20%;
+    justify-content: center;
+    align-items: center;
+    padding: 150px;
+    border-radius: 30px;
+    border: 2px solid black;
+    
+}
+
+#form-create{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    
+}
+
+#form-btns{
+    display: flex;
+}

@@ -11,6 +11,7 @@ export async function responseUser(email, password) {
             body: JSON.stringify({
                 email,
                 password
+              
             })
         })
         console.log('despues');

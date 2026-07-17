@@ -14,7 +14,6 @@ export function runnerView(){
 
         <ul>
             <li><a href="/runner" id="events-link">Events</a></li>
-            <li><a href="/my-events" id="my-events-link">My events</a></li>
         </ul>
 
         <button id="logout-btn">Log out</button>
@@ -92,23 +91,15 @@ export async function runnerEvents(){
                 </article>`
         });
 
-        const eventsLink = document.getElementById("events-link")
+        // const eventsLink = document.getElementById("events-link")
 
-        eventsLink.addEventListener("click", (e) => {
-            e.preventDefault()
+        // eventsLink.addEventListener("click", (e) => {
+        //     e.preventDefault()
 
-            history.pushState({}, "", "/runner")
+        //     history.pushState({}, "", "/runner")
 
-            router()
-        })
+        //     router()
+        // })
 
-        const myEvents = document.getElementById("my-events-link")
-
-        myEvents.addEventListener("click", (e) => {
-            e.preventDefault()
-
-            history.pushState({}, "", "/my-events")
-
-            router()
-        })
+        
 }
