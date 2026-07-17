@@ -17,6 +17,10 @@ def login_user(login):
     user = cursor.fetchone() # will return the tuple of the found record
     role = "runner"
 
+    if user:
+        user_id = user["id_runner"]
+
+
     # if no exists, look for sponsor
     if user is None:
         cursor.execute("""
@@ -27,6 +31,9 @@ def login_user(login):
 
         user = cursor.fetchone()
         role = "sponsor"
+
+        if user:
+            user_id = user["id_sponsor"]
 
 
     # if no exits in sponsor either, look for event_organizer
@@ -39,6 +46,11 @@ def login_user(login):
 
         user = cursor.fetchone()
         role = "organizer"
+
+        if user:
+            user_id = user["id_event_organizer"]
+
+
 
     cursor.close()
     connection.close()
@@ -64,7 +76,8 @@ def login_user(login):
             "role": role,
             "user": {
                     "email": user["email"],
-                    "name": user["name"]
+                    "name": user["name"],
+                    "id": user_id
                     }
         }
     
