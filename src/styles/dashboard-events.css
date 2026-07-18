@@ -64,9 +64,13 @@
 
 .events-grid{
 
-    display:flex;
+    display:grid;
 
     gap:30px;
+
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+
+
 }
 
 .card-color{
@@ -215,38 +219,33 @@ p{
     background-color: var(--accent-dark);
 }
 
-#form-container-father{
-    display: none;
-    height: 100vh;
-    inset: 0;
-    position: absolute;
-    justify-content: center;
-    align-items: center;
-    backdrop-filter: blur(10px);
-    
+.edit-btn{
+    background-color: transparent;
+    border: 1px solid var(--accent-light);
+    color: var(--accent-light);
+    padding: 10px 20px 10px 20px;
+    border-radius: 10px;
+    transition: var(--transition);
+    cursor: pointer;
 }
 
-#form-container{
-    display: none;
-    
-    background: linear-gradient(to bottom, var(--secondary), var(--accent-dark), var(--primary-light)  );
-    height: 70%;
-    width: 20%;
-    justify-content: center;
-    align-items: center;
-    padding: 150px;
-    border-radius: 30px;
-    border: 2px solid black;
-    
+.edit-btn:hover{
+    background-color: var(--accent-light);
+    color: black;
 }
 
-#form-create{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    
+.delete-btn{
+    background-color: transparent;
+    border: 1px solid var(--secondary-light);
+    color: var(--secondary-light);
+    padding: 10px 0 10px 0;
+    border-radius: 10px;
+    width: 6rem;
+    transition: var(--transition);
+    cursor: pointer;
 }
 
-#form-btns{
-    display: flex;
+.delete-btn:hover{
+    background-color: var(--secondary-light);
+    color: var(--text);
 }

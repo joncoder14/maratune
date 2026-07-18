@@ -156,3 +156,188 @@ nav ul li a:hover{
     background-color: var(--primary);
     transform: translateY(-2px);
 }
+
+/*forms*/
+
+/* ===== Overlay ===== */
+
+#form-container-father{
+    position: fixed;
+    inset: 0;
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(15,23,42,.55);
+    backdrop-filter: blur(8px);
+
+    z-index: 999;
+}
+
+/* ===== Modal ===== */
+
+#form-container{
+
+    display: flex;
+
+    width: 600px;
+    max-width: 90%;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    border-radius: 20px;
+
+    box-shadow: var(--shadow-large);
+
+    padding: 35px;
+}
+
+/* ===== Form ===== */
+
+#form-create, #form-edit{
+
+    width:100%;
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:20px;
+}
+
+/* Cada campo */
+
+#form-create div, #form-edit div{
+
+    display:flex;
+    flex-direction:column;
+}
+
+/* Título */
+
+.form-title{
+
+    grid-column:1/3;
+
+    font-size:1.8rem;
+
+    margin-bottom:10px;
+
+    color:var(--text);
+}
+
+/* Labels */
+
+#form-create label, #form-edit label{
+
+    margin-bottom:8px;
+
+    color:var(--text-secondary);
+
+    font-size:.95rem;
+}
+
+/* Inputs */
+
+#form-create input,
+#form-edit input,
+#form-create select,
+#form-edit select{
+
+    height:48px;
+
+    padding:0 15px;
+
+    border:1px solid var(--border);
+
+    border-radius:12px;
+
+    background:var(--background-secondary);
+
+    color:var(--text);
+
+    outline:none;
+
+    transition:var(--transition);
+}
+
+#form-create input:focus,
+#form-edit input:focus,
+#form-create select:focus,
+#form-edit select:focus{
+
+    border-color:var(--primary-light);
+
+    box-shadow:0 0 0 3px rgba(34,197,94,.2);
+}
+
+/* Description ocupa todo */
+
+.description-group{
+
+    grid-column:1/3;
+}
+
+.description-group input{
+
+    height:60px;
+}
+
+/* Botones */
+
+#form-btns{
+
+    grid-column: 1/3;
+
+    display:flex;
+
+    flex-direction: row !important;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap:15px;
+
+    margin-top:15px;
+}
+
+#form-btns button{
+    width: 150px;
+    height: 45px;
+    flex: none;
+}
+
+/* Cancel */
+
+#cancel-btn{
+    background: transparent;
+    color: var(--secondary-light);
+    border: 2px solid var(--secondary);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+#cancel-btn:hover{
+    background: var(--secondary);
+    color: white;
+}
+
+/* Create */
+
+#done-btn{
+    background: var(--primary-light);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+#done-btn:hover{
+    background: var(--primary);
+}
