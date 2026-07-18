@@ -1,15 +1,14 @@
-import { getEvents } from "../services/eventService"
-import "../../styles/global.css"
-import "../../styles/input.css"
-import "../../styles/dashboard-events.css"
+import { getEvents } from "../services/eventService";
+import "../../styles/global.css";
+import "../../styles/input.css";
+import "../../styles/dashboard-events.css";
 import { logout } from "../services/logoutService";
-import { router } from "../routes/router"
-import { newEvent } from "../services/eventService"
-import { dom } from "@fortawesome/fontawesome-svg-core"
+import { router } from "../routes/router";
+import { newEvent } from "../services/eventService";
+import { dom } from "@fortawesome/fontawesome-svg-core";
 
-export function organizerView(){
-
-    return `<nav>
+export function organizerView() {
+  return `<nav>
         <img src="src/assets/logo/logo-horizontal.png" alt="" width="150px">
 
         <ul>
@@ -47,41 +46,41 @@ export function organizerView(){
             
             </section>
 
-            <div id="form-container-father">
+            <div id="form-container-father" class="hidden">
                 <div id="form-container">
                     <form id="form-create" action="">
                         <div>
                             <label for="name">Name:</label>
-                            <input name="nameEvent" type="text">
+                            <input name="nameEvent" type="text" required>
                         </div>
 
                         <div>
                             <label for="description">Description:</label>
-                            <input name="description" type="text">
+                            <input name="description" type="text" required>
                         </div>
 
                         <div>
                             <label for="date">Date event:</label>
-                            <input name="date_event" type="date">
+                            <input name="date_event" type="date" required>
                         </div>
                          <div>
                             <label for="date_time">hour:</label>
-                            <input name="date_time" >
+                            <input name="date_time" type="time" required>
                         </div>
 
                         <div>
                             <label for="city">City:</label>
-                            <input name="city" type="text">
+                            <input name="city" type="text" required>
                         </div>
 
                         <div>
                             <label for="cups">Cups:</label>
-                            <input name="cups" type="number">
+                            <input name="cups" type="number" required>
                         </div>
 
                         <div>
                             <label for="status">Status:</label>
-                            <select name="statusEvent" id="status">
+                            <select name="statusEvent" id="status" required>
                                 <option value="open">Open</option>
                                 <option value="close">Close</option>
                             </select>
@@ -89,7 +88,7 @@ export function organizerView(){
 
                         <div id="form-btns">
                             <button id="done-btn" type="submit">Done</button>
-                            <button id="cancel-btn">Cancel</button>
+                            <button id="cancel-btn"type="button">Cancel</button>
                         </div>
                     </form>
                 </div>
@@ -101,85 +100,71 @@ export function organizerView(){
             
         </main>
     </div>
-    `
-}
- 
-
-export async function createEvent () {
-
-    const eventContainer = document.getElementById("events-container")
-    let formContainer = undefined
-    let containerFather = undefined
-    const donebtn = document.getElementById("done-btn");
-    const user = JSON.parse(localStorage.getItem("user"))
-    const createBtn = document.getElementById("create-btn") 
-    const id_event_organizer = user.user.id
-    const formCreate = document.getElementById("form-create")
-    console.log(user.user.id);
-    
-
-    formCreate.addEventListener("submit",(e) => {
-        e.preventDefault()
-        donebtn.addEventListener("click",()=>{
-            const{nameEvent,description,date_event,date_time,city,cups,statusEvent} = Object.fromEntries(new FormData(formCreate))
-          
-        console.log(nameEvent,description,date_event,date_time,city,cups,statusEvent);
-        
-        newEvent(nameEvent,description,date_event,date_time,city,cups,statusEvent,id_event_organizer)
-        })
-    })
-
-
-    createBtn.addEventListener("click",() => {
-     
-        
-
-        const formCreate = document.getElementById('form-create')
-        formContainer = document.getElementById('form-container')
-        containerFather = document.getElementById('form-container-father')
-
-        formCreate.addEventListener("submit", (e) => e.preventDefault())
-
-        if (formContainer.style.display === 'none'){
-            formContainer.style.display = 'flex'
-            containerFather.style.display = 'flex'
-        } else {
-            formContainer.style.display = 'none'
-            containerFather.style.display = 'none'
-        }
-
-        
-    })
-
-    const cancelBtn = document.getElementById("cancel-btn")
-    cancelBtn.addEventListener("click", (e) => {
-
-        containerFather = document.getElementById('form-container-father')
-        formContainer = document.getElementById('form-container')
-
-        if (formContainer.style.display === 'none'){
-            formContainer.style.display = 'flex'
-            containerFather.style.display = 'flex'
-        } else {
-            formContainer.style.display = 'none'
-            containerFather.style.display = 'none'
-        }
-    })
-   
+    `;
 }
 
-export async function organizerEvents(){
-    const eventContainer = document.getElementById("event-container")
-    
-        const events = await getEvents() 
+export async function createEvent() {
+  const eventContainer = document.getElementById("events-container");
+  const donebtn = document.getElementById("done-btn");
+  const user = JSON.parse(localStorage.getItem("user"));
+  const createBtn = document.getElementById("create-btn");
+  const id_event_organizer = user.user.id;
+  const formCreate = document.getElementById("form-create");
+  const containerFather = document.getElementById("form-container-father");
+  const formContainer = document.getElementById("form-container");
+  console.log(user.user.id);
 
-        console.log(events);
-        
-        await createEvent()
+  formCreate.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-        events.forEach(event => {
-           
-            eventContainer.innerHTML += `<article class="card-color">
+    const {
+      nameEvent,
+      description,
+      date_event,
+      date_time,
+      city,
+      cups,
+      statusEvent,
+    } = Object.fromEntries(new FormData(formCreate));
+
+    const created = await newEvent(
+      nameEvent,
+      description,
+      date_event,
+      date_time,
+      city,
+      cups,
+      statusEvent,
+      id_event_organizer,
+    );
+    if (created) {
+      containerFather.classList.add("hidden");
+      alert("created!");
+      history.pushState({}, "", "/organizer");
+
+      router();
+    }
+  });
+
+  createBtn.addEventListener("click", () => {
+    containerFather.classList.remove("hidden");
+  });
+  const cancelBtn = document.getElementById("cancel-btn");
+  cancelBtn.addEventListener("click", () => {
+    containerFather.classList.add("hidden");
+  });
+}
+export async function organizerEvents() {
+  const eventContainer = document.getElementById("event-container");
+
+  const events = await getEvents();
+
+  console.log(events);
+
+  await createEvent();
+
+  events.forEach((event) => {
+    eventContainer.innerHTML += `<article class="card-color">
     
                     <div class="event-card" >
     
@@ -207,12 +192,7 @@ export async function organizerEvents(){
     
     
                   
-                </article>`
-        });
-        logout();
+                </article>`;
+  });
+  logout();
 }
-
-        
-        
-    
- 

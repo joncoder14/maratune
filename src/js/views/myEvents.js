@@ -1,7 +1,7 @@
 import "../../styles/global.css";
-import "../../styles/dashboard-events.css"
+import "../../styles/dashboard-events.css";
 import { router } from "../routes/router";
-import { getEvents } from "../services/eventService";
+import { getEvents, APIeditEvent, removeEvent } from "../services/eventService";
 import { logout } from "../services/logoutService";
 
 export function myEventsView() {
@@ -30,41 +30,30 @@ export function myEventsView() {
             
             </section>
 
-            <div id="form-container-father">
+            <div id="form-container-father" class="hidden">
                 <div id="form-container">
                     <form id="form-edit" action="">
                         <div>
                             <label for="name">Name:</label>
-                            <input name="nameEvent" type="text">
+                            <input name="nameEvent" type="text" required>
                         </div>
 
                         <div>
                             <label for="description">Description:</label>
-                            <input name="description" type="text">
+                            <input name="description" type="text" required>
                         </div>
 
                         <div>
                             <label for="date">Date event:</label>
-                            <input name="date_event" type="date">
+                            <input name="date_event" type="date" required>
                         </div>
                          <div>
                             <label for="date_time">hour:</label>
-                            <input name="date_time" >
-                        </div>
-
-                        <div>
-                            <label for="city">City:</label>
-                            <input name="city" type="text">
-                        </div>
-
-                        <div>
-                            <label for="cups">Cups:</label>
-                            <input name="cups" type="number">
-                        </div>
-
+                            <input name="date_time" type="time" required>
+                        </div>  
                         <div>
                             <label for="status">Status:</label>
-                            <select name="statusEvent" id="status">
+                            <select name="statusEvent" id="status" required>
                                 <option value="open">Open</option>
                                 <option value="close">Close</option>
                             </select>
@@ -72,7 +61,7 @@ export function myEventsView() {
 
                         <div id="form-btns">
                             <button id="done-btn" type="submit">Done</button>
-                            <button id="cancel-btn">Cancel</button>
+                            <button id="cancel-btn" type="button">Cancel</button>
                         </div>
                     </form>
                 </div>
@@ -84,13 +73,13 @@ export function myEventsView() {
             
             </main>
             </div>
-    `;
+      `;
 }
 
 export async function renderEvents() {
-  const eventContainer = document.getElementById("event-container")
-  const user = JSON.parse(localStorage.getItem("user"))
-  const events = await getEvents()
+  const eventContainer = document.getElementById("event-container");
+  const user = JSON.parse(localStorage.getItem("user"));
+  const events = await getEvents();
 
   events.forEach((event) => {
     if (user.user.id === event.id_event_organizer) {
@@ -115,7 +104,7 @@ export async function renderEvents() {
                         <div class="buttons">
         
                             <button data-id=${event.id_event} class="edit-btn">edit</button>
-                            <button class="delete-btn">delete details</button>
+                            <button data-id=${event.id_event} class="delete-btn">delete details</button>
                         
                         
                         </div>
@@ -128,61 +117,65 @@ export async function renderEvents() {
 }
 
 let id = null;
+let idDelete = null;
+
+export function deleteEvent() {
+  const deletBtns = document.querySelectorAll(".delete-btn");
+  deletBtns.forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      idDelete = btn.dataset.id;
+      const evnetDeleted = await removeEvent(idDelete);
+      if (evnetDeleted) {
+        alert("deleted!");
+        history.pushState({}, "", "/my-events");
+
+        router();
+      } else {
+        alert("could not delete");
+      }
+    });
+  });
+}
+
 export function editEvent() {
-  const btnsEdit = document.querySelectorAll(".edit-btn")
-  const formEdit = document.getElementById('form-edit')
-  let formContainer = undefined
-  let containerFather = undefined
-  
+  const btnsEdit = document.querySelectorAll(".edit-btn");
+  const formEdit = document.getElementById("form-edit");
+  let formContainer = document.getElementById("form-container");
+  let containerFather = document.getElementById("form-container-father");
+  const btnDone = document.getElementById("done-btn");
+  formEdit.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const { nameEvent, description, date_event, date_time, statusEvent } =
+      Object.fromEntries(new FormData(formEdit));
+
+    const eventEdited = await APIeditEvent(
+      id,
+      nameEvent,
+      description,
+      date_event,
+      date_time,
+      statusEvent,
+    );
+    if (eventEdited) {
+      containerFather.classList.add("hidden");
+      alert("edited!");
+      history.pushState({}, "", "/my-events");
+
+      router();
+    }
+  });
 
   btnsEdit.forEach((btn) => {
-      btn.addEventListener("click", async () => {
-        id = btn.dataset.id
+    btn.addEventListener("click", async () => {
+      id = btn.dataset.id;
+      containerFather.classList.remove("hidden");
+    });
+  });
 
-        const events = await getEvents()
-        const event = events.find(e => e.id_event == id)
-
-        formEdit.nameEvent.value = event.name
-        formEdit.description.value = event.description
-        formEdit.date_event.value = event.date_event
-        formEdit.date_time.value = event.date_time
-        formEdit.city.value = event.city
-        formEdit.cups.value = event.cups
-        formEdit.statusEvent.value = event.status
-
-
-
-        formContainer = document.getElementById('form-container')
-        containerFather = document.getElementById('form-container-father')
-
-        formEdit.addEventListener("submit", (e) => e.preventDefault())
-
-        if (formContainer.style.display === 'none'){
-            formContainer.style.display = 'flex'
-            containerFather.style.display = 'flex'
-        } else {
-            formContainer.style.display = 'none'
-            containerFather.style.display = 'none'
-        }
-
-        console.log(id)
-    })
-  })
-
-  const cancelBtn = document.getElementById("cancel-btn")
-      cancelBtn.addEventListener("click", (e) => {
-
-      containerFather = document.getElementById('form-container-father')
-      formContainer = document.getElementById('form-container')
-
-        if (formContainer.style.display === 'none'){
-            formContainer.style.display = 'flex'
-            containerFather.style.display = 'flex'
-        } else {
-            formContainer.style.display = 'none'
-            containerFather.style.display = 'none'
-        }
-    })
+  const cancelBtn = document.getElementById("cancel-btn");
+  cancelBtn.addEventListener("click", () => {
+    containerFather.classList.add("hidden");
+  });
 }
 
 export function myEventsEvents() {
@@ -207,5 +200,5 @@ export function myEventsEvents() {
 
     router();
   });
-  logout()
+  logout();
 }

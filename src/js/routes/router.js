@@ -7,6 +7,7 @@ import {
   myEventsEvents,
   renderEvents,
   editEvent,
+  deleteEvent,
 } from "../views/myEvents";
 import { registerView } from "../views/register";
 
@@ -26,6 +27,7 @@ const routes = {
     events: myEventsEvents,
     renderEvents,
     editEvent,
+    deleteEvent,
   },
 };
 
@@ -53,6 +55,7 @@ export async function router() {
   await route.renderEvents?.();
 
   route.editEvent?.();
+  route.deleteEvent?.();
 }
 
 window.addEventListener("popstate", router);
