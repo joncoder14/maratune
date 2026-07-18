@@ -1,9 +1,9 @@
-import "../../styles/global.css"
+import "../../styles/global.css";
 import { router } from "../routes/router";
 import { getEvents } from "../services/eventService";
 
 export function myEventsView() {
-    return `
+  return `
         <nav>
             <img id="logo" src="src/assets/logo/logo-horizontal.png" width="150">
 
@@ -34,18 +34,17 @@ export function myEventsView() {
             
             </main>
             </div>
-    `
+    `;
 }
 
-export async function renderEvents(){
-    const eventContainer = document.getElementById("event-container")
-    const user = JSON.parse(localStorage.getItem("user"))
-    const events = await getEvents() 
-      
-            events.forEach(event => {
-              
-                if (user.user.id === event.id_event_organizer){
-                        eventContainer.innerHTML += `<article class="card-color">
+export async function renderEvents() {
+  const eventContainer = document.getElementById("event-container");
+  const user = JSON.parse(localStorage.getItem("user"));
+  const events = await getEvents();
+
+  events.forEach((event) => {
+    if (user.user.id === event.id_event_organizer) {
+      eventContainer.innerHTML += `<article class="card-color">
         
                         <div class="event-card" >
         
@@ -65,43 +64,52 @@ export async function renderEvents(){
                         </div>
                         <div class="buttons">
         
-                            <button id="suscribe-btn">Suscribe</button>
-                            <button id="details-btn">View details</button>
+                            <button data-id=${event.id_event} class="edit-btn">edit</button>
+                            <button class="delte-btn">delete details</button>
                         
                         
                         </div>
         
         
                       
-                    </article>`
-            };
-                }
+                    </article>`;
+    }
+  });
+}
 
-            )
-            
+let id = null;
+export function editEvent() {
+  const btnsEdit = document.querySelectorAll(".edit-btn");
+
+  btnsEdit.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      id = btn.dataset.id;
+
+      console.log(id);
+    });
+  });
 }
 
 export function myEventsEvents() {
-    console.log("My Events cargado");
+  console.log("My Events cargado");
 
-    const myEvents = document.getElementById("my-events-link")
+  const myEvents = document.getElementById("my-events-link");
 
-        myEvents.addEventListener("click", (e) => {
-            e.preventDefault()
-            console.log("funcion my events");
-            
+  myEvents.addEventListener("click", (e) => {
+    e.preventDefault();
+    console.log("funcion my events");
 
-            history.pushState({}, "", "/my-events")
-            
-            router()
-        })
-            const eventNavbar = document.getElementById("events-link")
-            
-                    eventNavbar.addEventListener("click", (e) => {
-                        e.preventDefault()
-            
-                        history.pushState({}, "", "/organizer")
-            
-                        router()
-                    })
+    history.pushState({}, "", "/my-events");
+
+    router();
+  });
+  const eventNavbar = document.getElementById("events-link");
+
+  eventNavbar.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    history.pushState({}, "", "/organizer");
+
+    router();
+  });
 }
