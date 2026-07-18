@@ -1,4 +1,4 @@
-import '@fortawesome/fontawesome-free/css/all.min.css'
+// import '@fortawesome/fontawesome-free/css/all.min.css'
 import "../../styles/global.css"
 import "../../styles/login.css"
 import "../../styles/input.css"
@@ -81,7 +81,10 @@ export function loginEvents(){
         
         
         
-        localStorage.setItem("user", JSON.stringify(userLogin))
+        localStorage.setItem("user", JSON.stringify(userLogin, userLogin.id))
+
+        
+        
 
         if (userLogin.role === "runner"){
             history.pushState({}, "", "/runner")

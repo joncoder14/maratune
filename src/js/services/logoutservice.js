@@ -9,10 +9,10 @@ export function logout() {
     logoutBtn.addEventListener("click", () => {
         
 
-        // Elimina la sesión
+      
         localStorage.removeItem("user");
 
-        // Regresa al login
+        
         history.pushState({}, "", "/");
 
         router();
