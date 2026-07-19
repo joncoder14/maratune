@@ -17,6 +17,6 @@ def get_events():
 def patch_event(id_event:int, event:UpdateEvents):
     return update_event(id_event, event)
 
-@router.delete("/events/{id_events}")
+@router.delete("/events/{id_event}")
 def remove_event(id_event:int):
     return delete_event(id_event)
