@@ -87,6 +87,11 @@
   --transition: all 0.3s ease;
 }
 
+html {
+  scrollbar-color: var(--primary) var(--background-secondary);
+  scrollbar-width: thin;
+}
+
 body {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   background-color: var(--background);
@@ -155,7 +160,7 @@ nav ul li a:hover {
   display: none !important;
 }
 
-#form-container-father {
+#form-container-father, .modal {
   position: fixed;
   inset: 0;
   display: flex;
@@ -170,7 +175,7 @@ nav ul li a:hover {
 
 /* ===== Modal ===== */
 
-#form-container {
+#form-container{
   display: flex;
 
   width: 600px;
@@ -326,4 +331,12 @@ nav ul li a:hover {
 
 #done-btn:hover {
   background: var(--primary);
+}
+
+
+/* View details */
+
+.modal-content{
+  border: 1px solid black;
+
 }

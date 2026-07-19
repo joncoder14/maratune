@@ -167,8 +167,19 @@ export function editEvent() {
 
   btnsEdit.forEach((btn) => {
     btn.addEventListener("click", async () => {
-      id = btn.dataset.id;
-      containerFather.classList.remove("hidden");
+        id = btn.dataset.id;
+
+        const events = await getEvents()
+        const event = events.find(e => e.id_event == id)
+
+        formEdit.nameEvent.value = event.name
+        formEdit.description.value = event.description
+        formEdit.date_event.value = event.date_event
+        formEdit.date_time.value = event.date_time
+        formEdit.statusEvent.value = event.status
+        
+
+        containerFather.classList.remove("hidden");
     });
   });
 
