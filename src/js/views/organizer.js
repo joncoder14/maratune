@@ -12,8 +12,8 @@ export function organizerView() {
         <img src="src/assets/logo/logo-horizontal.png" alt="" width="150px">
 
         <ul>
-            <li><a id="events-link" href="/organizer">Events</a></li>
-            <li><a id="my-events-link" href="/my-events">My events</a></li>
+            <li><a id="events-link" href="/organizer" data-link>Events</a></li>
+            <li><a id="my-events-link" href="/my-events" data-link>My events</a></li>
         </ul>
         
         <button id="logout-btn">Log out</button>
@@ -93,7 +93,9 @@ export function organizerView() {
                     </form>
                 </div>
             </div>
-            
+            <section id="viewDetails">
+
+            </section>
             
             
             
@@ -185,7 +187,7 @@ export async function organizerEvents() {
                     <div class="buttons">
     
                         <button id="suscribe-btn">Suscribe</button>
-                        <button id="details-btn">View details</button>
+                        <button data-id=${event.id_event} id="details-btn" class="details">View details</button>
                     
                     
                     </div>
@@ -194,5 +196,41 @@ export async function organizerEvents() {
                   
                 </article>`;
   });
+  viewDetails(events);
   logout();
+}
+
+function viewDetails(events) {
+  const viewDetails = document.getElementById("viewDetails");
+  const btnsDetails = document.querySelectorAll(".details");
+  btnsDetails.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const idDetails = Number(btn.dataset.id);
+      const selectedEvent = events.find((e) => e.id_event === idDetails);
+
+      if (selectedEvent) {
+        console.log("entro al if");
+
+        viewDetails.innerHTML = `
+                    <div class="modal">
+                        <div class="modal-content">
+                            <h2>${selectedEvent.name}</h2>
+                            <p><strong>Description:</strong> ${selectedEvent.description}</p>
+                            <p><strong>City:</strong> ${selectedEvent.city}</p>
+                            <p><strong>Date:</strong> ${selectedEvent.date_event}</p>
+                            <p><strong>Hour:</strong> ${selectedEvent.date_time}</p>
+                            <p><strong>Cups:</strong> ${selectedEvent.cups}</p>
+                            <p><strong>Status:</strong> ${selectedEvent.status}</p>
+
+                            <button id="close-modal">Close</button>
+                        </div>
+                    </div>
+                `;
+
+        document.getElementById("close-modal").addEventListener("click", () => {
+          viewDetails.innerHTML = "";
+        });
+      }
+    });
+  });
 }

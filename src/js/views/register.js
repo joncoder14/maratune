@@ -1,14 +1,13 @@
-import "../../styles/global.css"
-import "../../styles/register.css"
-import "../../styles/input.css"
-import logoHorizontal from "../../assets/logo/logo-horizontal.png"
-
+import "../../styles/global.css";
+import "../../styles/register.css";
+import "../../styles/input.css";
+import logoHorizontal from "../../assets/logo/logo-horizontal.png";
 
 export function registerView() {
-    return `
+  return `
         <div class="register-container">
 
-            <!-- Left Panel -->
+            
 
             <div class="left-panel">
 
@@ -34,11 +33,11 @@ export function registerView() {
 
             </div>
 
-            <!-- Right Panel -->
+            
 
             <div class="right-panel">
 
-                <a href="../index.html" class="volver">
+                <a href="../" data-link class="volver">
                     <i class="fa-solid fa-arrow-left"></i>
                     Back to Home
                 </a>
@@ -149,5 +148,5 @@ export function registerView() {
             </div>
 
         </div>
-`
+`;
 }
