@@ -148,7 +148,7 @@ p{
     color: var(--text-muted);
 }
 
-#details-btn{
+.details{
     background-color: transparent;
     border: 1px solid var(--primary-light);
     color: var(--primary-light);
@@ -159,7 +159,7 @@ p{
     cursor: pointer;
 }
 
-#details-btn:hover{
+.details:hover{
     background-color: var(--primary-light);
     color: var(--text);
 }
