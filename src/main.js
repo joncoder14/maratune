@@ -1,3 +1,17 @@
-import { router } from "./js/routes/router"
+import { router } from "./js/routes/router";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
-router()
+document.addEventListener("DOMContentLoaded", () => {
+  router();
+});
+
+document.addEventListener("click", (e) => {
+  const link = e.target.closest("[data-link]");
+
+  if (!link) return;
+
+  e.preventDefault();
+
+  history.pushState({}, "", link.href);
+  router();
+});

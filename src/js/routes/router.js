@@ -1,31 +1,62 @@
-import { loginView, loginEvents } from "../views/login"
-import { organizerView, organizerEvents } from "../views/organizer"
-import { runnerView, runnerEvents } from "../views/runner"
-import { sponsorView, sponsorEvents } from "../views/sponsor"
-
+import { loginView, loginEvents } from "../views/login";
+import { organizerView, organizerEvents } from "../views/organizer";
+import { runnerView, runnerEvents } from "../views/runner";
+import { sponsorView, sponsorEvents } from "../views/sponsor";
+import {
+  myEventsView,
+  myEventsEvents,
+  renderEvents,
+  editEvent,
+  deleteEvent,
+} from "../views/myEvents";
+import { createUser, registerView } from "../views/register";
 
 const routes = {
-    "/": { path: loginView, events: loginEvents },
+  "/": { path: loginView, events: loginEvents },
 
-    "/organizer": { path: organizerView, events: organizerEvents },
+  "/register": { path: registerView, createUser },
 
-    "/runner": { path: runnerView, events: runnerEvents },
+  "/organizer": { path: organizerView, events: organizerEvents },
 
-    "/sponsor": { path: sponsorView, events: sponsorEvents }
+  "/runner": { path: runnerView, events: runnerEvents },
+
+  "/sponsor": { path: sponsorView, events: sponsorEvents },
+
+  "/my-events": {
+    path: myEventsView,
+    events: myEventsEvents,
+    renderEvents,
+    editEvent,
+    deleteEvent,
+  },
+};
+
+export async function router() {
+  const path = window.location.pathname;
+  const route = routes[path];
+
+  if (!route) {
+    document.querySelector("#app").innerHTML = "<h1>404</h1>";
+    return;
+  }
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  const protectedRoutes = ["/runner", "/organizer", "/sponsor", "/my-events"];
+
+  if (protectedRoutes.includes(path) && !user) {
+    history.pushState({}, "", "/");
+    return router();
+  }
+
+  document.querySelector("#app").innerHTML = route.path();
+
+  route.events?.();
+
+  await route.renderEvents?.();
+
+  route.editEvent?.();
+  route.deleteEvent?.();
+  route.createUser?.();
 }
 
-export function router(){
-    const path = window.location.pathname
-    const route = routes[path]
-
-    if (!route){
-        document.querySelector('#app').innerHTML = "<h1>404</h1>"
-        return
-    }
-
-    document.querySelector('#app').innerHTML = route.path()
-
-    route.events()
-}
-
-window.addEventListener("popstate", router)
+window.addEventListener("popstate", router);

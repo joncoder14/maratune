@@ -1,8 +1,8 @@
+// import '@fortawesome/fontawesome-free/css/all.min.css'
 import "../../styles/global.css"
 import "../../styles/login.css"
 import "../../styles/input.css"
-import { getData } from "../services/userService"
-import { organizerView } from "./organizer"
+import { responseUser } from "../services/userService"
 import { router } from "../routes/router"
 
 
@@ -46,11 +46,11 @@ export function loginView(){
 
                 <div class="division"><span>or continue with</span></div>
 
-                <button id="google"><img src="../../assets/icons/google.png" width="25px"></button>
+                <div id="google"><img src="/src/assets/icons/google.png" width="25px"></div>        <!--agregarle la ruta-->
             </form>
 
             <div id="register">
-            <p>Don't you have an account?</p><a href="">Sign up here</a>
+            <p>Don't you have an account?</p><a href="/register">Sign up here</a>
             </div>
         </section>
 
@@ -69,24 +69,34 @@ export function loginEvents(){
         const email = e.target.email.value
         const password = e.target.password.value
 
-        const users = await getData()
+        const response = await responseUser(email, password)
         
-        const user = users.find(user => {
-            return user.email === email && user.password === password
-        })
+        const userLogin = await response.json()
+      
 
-        if (!user){
-            alert("Credenciales incorrectas")
+        if(!userLogin.success){
+            alert(userLogin.message)
             return
-        } else if (user.role === "runner"){
+        }
+        
+        
+        
+        localStorage.setItem("user", JSON.stringify(userLogin, userLogin.id))
+
+        
+        
+
+        if (userLogin.role === "runner"){
             history.pushState({}, "", "/runner")
-        } else if (user.role === "organizer"){
+        } else if (userLogin.role === "organizer"){
             history.pushState({}, "", "/organizer")
-        } else if (user.role === "sponsor"){
+        } else if (userLogin.role === "sponsor"){
             history.pushState({}, "", "/sponsor")
         }
+        
 
-        localStorage.setItem("user", JSON.stringify(user))
+
+        
 
         router()
 
