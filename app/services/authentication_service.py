@@ -2,7 +2,6 @@
 from database import get_connection
 from datetime import datetime
 
-
 def login_user(login):
 
     connection = get_connection() # connects with Supabase
@@ -13,7 +12,7 @@ def login_user(login):
                     SELECT *
                     FROM runners
                     WHERE email = %s
-                    """, (login.email,)) # it passes as a tuple
+                    """, (login.email,)) 
 
     user = cursor.fetchone() # will return the tuple of the found record
     role = "runner"
