@@ -54,3 +54,24 @@
 .search-section input:focus {
     outline: none;
 }
+
+#search-status{
+    background-color: transparent;
+    border: 2px solid var(--border-light);
+    padding: 5px;
+    border-radius: 12px;
+    color: var(--text-muted);
+    transition: var(--transition);
+}
+
+#search-status:focus-within{
+    border: 2px solid var(--border-focus);
+}
+
+#search-status:focus{
+    outline: none;
+}
+
+#search-status option{
+    background-color: var(--background-secondary);
+}

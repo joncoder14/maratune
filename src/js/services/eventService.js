@@ -99,3 +99,74 @@ export async function removeEvent(event_id) {
     console.error(error);
   }
 }
+
+export function viewDetails(events) {
+  const viewDetails = document.getElementById("viewDetails");
+  const btnsDetails = document.querySelectorAll(".details");
+  btnsDetails.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const idDetails = Number(btn.dataset.id);
+      const selectedEvent = events.find((e) => e.id_event === idDetails);
+
+      if (selectedEvent) {
+        console.log("entro al if");
+
+        viewDetails.innerHTML = `
+                    <div class="modal">
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <img src="src/assets/logo/only-logo.png" alt="Logo evento">
+
+            <div>
+                <h2>${selectedEvent.name}</h2>
+                <span class="status ${selectedEvent.status}">${selectedEvent.status}</span>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="modal-body">
+
+            <div class="detail-item">
+                <span class="label">Description</span>
+                <p>${selectedEvent.description}</p>
+            </div>
+
+            <div class="detail-item">
+                <span class="label">City</span>
+                <p>${selectedEvent.city}</p>
+            </div>
+
+            <div class="detail-item">
+                <span class="label">Date</span>
+                <p>${selectedEvent.date_event}</p>
+            </div>
+
+            <div class="detail-item">
+                <span class="label">Hour</span>
+                <p>${selectedEvent.date_time}</p>
+            </div>
+
+            <div class="detail-item">
+                <span class="label">Cups</span>
+                <p>${selectedEvent.cups}</p>
+            </div>
+
+        </div>
+
+        <button id="close-modal">
+            Close
+        </button>
+
+    </div>
+</div>
+                `;
+
+        document.getElementById("close-modal").addEventListener("click", () => {
+          viewDetails.innerHTML = "";
+        });
+      }
+    });
+  });
+}

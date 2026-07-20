@@ -1,4 +1,4 @@
-import { getEvents } from "../services/eventService";
+import { getEvents, viewDetails } from "../services/eventService";
 import "../../styles/global.css";
 import "../../styles/input.css";
 import "../../styles/dashboard-events.css";
@@ -36,7 +36,12 @@ export function organizerView() {
 
             <section class="search-section">
                 <input class="" type="text" placeholder="search a event">
-                <button class="search-btn">Search</button>
+                <select name="search-status" id="search-status">
+                    <option value="all">All</option>
+                    <option value="open">Open</option>
+                    <option value="close">Close</option>
+                </select>
+                <button class="search-btn">Search</button><br>
             </section>
 
             <h2>Upcoming events</h2>
@@ -167,8 +172,10 @@ export async function organizerEvents() {
 
   events.forEach((event) => {
     eventContainer.innerHTML += `<article class="card-color">
+
     
-                    <div class="event-card" >
+                        <div class="event-card" >
+                        <span id="status-on-card" class="status ${event.status}">${event.status}</span>
     
     
                         <div class="event-info">
@@ -200,37 +207,3 @@ export async function organizerEvents() {
   logout();
 }
 
-function viewDetails(events) {
-  const viewDetails = document.getElementById("viewDetails");
-  const btnsDetails = document.querySelectorAll(".details");
-  btnsDetails.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const idDetails = Number(btn.dataset.id);
-      const selectedEvent = events.find((e) => e.id_event === idDetails);
-
-      if (selectedEvent) {
-        console.log("entro al if");
-
-        viewDetails.innerHTML = `
-                    <div class="modal">
-                        <div class="modal-content">
-                            <h2>${selectedEvent.name}</h2>
-                            <p><strong>Description:</strong> ${selectedEvent.description}</p>
-                            <p><strong>City:</strong> ${selectedEvent.city}</p>
-                            <p><strong>Date:</strong> ${selectedEvent.date_event}</p>
-                            <p><strong>Hour:</strong> ${selectedEvent.date_time}</p>
-                            <p><strong>Cups:</strong> ${selectedEvent.cups}</p>
-                            <p><strong>Status:</strong> ${selectedEvent.status}</p>
-
-                            <button id="close-modal">Close</button>
-                        </div>
-                    </div>
-                `;
-
-        document.getElementById("close-modal").addEventListener("click", () => {
-          viewDetails.innerHTML = "";
-        });
-      }
-    });
-  });
-}

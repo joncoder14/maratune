@@ -4,11 +4,10 @@ import "../../styles/input.css"
 import "../../styles/dashboard-events.css"
 import { router } from "../routes/router"
 import { logout } from "../services/logoutService";
-
+import { viewDetails } from "../services/eventService"
 
 export function runnerView(){
     // const user = JSON.parse(localStorage.getItem("user"))
-
     return `
     <nav>
         <img id="logo" src="src/assets/logo/logo-horizontal.png" alt="" width="150px">
@@ -35,6 +34,11 @@ export function runnerView(){
 
             <section class="search-section">
                 <input class="" type="text" placeholder="search a event">
+                <select name="search-status" id="search-status">
+                    <option value="all">All</option>
+                    <option value="open">Open</option>
+                    <option value="close">Close</option>
+                </select>
                 <button class="search-btn">Search</button>
             </section>
 
@@ -44,13 +48,16 @@ export function runnerView(){
 
             
             </section>
+
+            <section id="viewDetails">
+
+            </section>
             
             
             
             
-            
-            </main>
-            </div>
+        </main>
+    </div>
     `
 }
 
@@ -64,6 +71,7 @@ export async function runnerEvents(){
             eventContainer.innerHTML += `<article class="card-color">
     
                     <div class="event-card" >
+                    <span id="status-on-card" class="status ${event.status}">${event.status}</span>
     
     
                         <div class="event-info">
@@ -82,7 +90,7 @@ export async function runnerEvents(){
                     <div class="buttons">
     
                         <button id="suscribe-btn">Suscribe</button>
-                        <button id="details-btn">View details</button>
+                        <button data-id=${event.id_event} id="details-btn" class="details">View details</button>
                     
                     
                     </div>
@@ -91,26 +99,7 @@ export async function runnerEvents(){
                   
                 </article>`
         });
-
-        // const eventsLink = document.getElementById("events-link")
-
-        // eventsLink.addEventListener("click", (e) => {
-        //     e.preventDefault()
-
-        //     history.pushState({}, "", "/runner")
-
-        //     router()
-        // })
-
-      //  const myEvents = document.getElementById("my-events-link")
-
-       // myEvents.addEventListener("click", (e) => {
-        //    e.preventDefault()
-
-         //   history.pushState({}, "", "/my-events")
-
-       //     router()
-        //})
+        viewDetails(events);
         logout();
 }
         

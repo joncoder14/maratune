@@ -42,25 +42,6 @@
     width:140px;
 }
 
-.categories{
-
-    display:flex;
-
-    gap:15px;
-
-    margin-bottom:40px;
-}
-
-.categories button{
-
-    padding:10px 18px;
-
-    border:none;
-
-    border-radius:20px;
-
-    cursor:pointer;
-}
 
 .events-grid{
 
@@ -74,6 +55,7 @@
 }
 
 .card-color{
+    position: relative;
 
     background:var(--surface);
 
@@ -91,6 +73,14 @@
 .card-color:hover{
     transform:translateY(-5px);
 
+}
+
+#status-on-card{
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 999;
+    margin: 5px;
 }
 
 .buttons{
@@ -187,18 +177,6 @@ p{
 #suscribe-btn:hover{
     background-color: var(--accent-light);
     color: black;
-}
-
-#icon-location{
-    color: var(--secondary-light);
-}
-
-#icon-schedule{
-    color: var(--accent-light);
-}
-
-#icon-dollar{
-    color: var(--primary-light);
 }
 
 /* events-organizer */
