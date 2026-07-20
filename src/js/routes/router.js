@@ -9,12 +9,12 @@ import {
   editEvent,
   deleteEvent,
 } from "../views/myEvents";
-import { registerView } from "../views/register";
+import { createUser, registerView } from "../views/register";
 
 const routes = {
   "/": { path: loginView, events: loginEvents },
 
-  "/register": { path: registerView },
+  "/register": { path: registerView, createUser },
 
   "/organizer": { path: organizerView, events: organizerEvents },
 
@@ -56,6 +56,7 @@ export async function router() {
 
   route.editEvent?.();
   route.deleteEvent?.();
+  route.createUser?.();
 }
 
 window.addEventListener("popstate", router);

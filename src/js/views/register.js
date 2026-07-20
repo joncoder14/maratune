@@ -2,6 +2,8 @@ import "../../styles/global.css";
 import "../../styles/register.css";
 import "../../styles/input.css";
 import logoHorizontal from "../../assets/logo/logo-horizontal.png";
+import { registerUser } from "../services/userService";
+import { router } from "../routes/router";
 
 export function registerView() {
   return `
@@ -48,18 +50,34 @@ export function registerView() {
                     Join the running community
                 </p>
 
-                <form>
+                <form id="form-register">
 
                     <div class="row">
 
                         <div class="input-group">
-                            <label>Full Name</label>
-                            <input type="text" placeholder="Enter your full name">
+                            <label>Name</label>
+                            <input type="text" placeholder="Enter your full name" name="name" required>
                         </div>
+                         <div class="input-group">
+                            <label>Last Name</label>
+                            <input type="text" placeholder="Enter your Last name" name="lastname" required>
+                        </div>
+
+                           <div class="input-group">
+                          
+                           <label>Phone Number</label>
+                          <input type="tel" placeholder="300 123 4567" name="phone_number"  required>
+                        </div>
+                        
 
                         <div class="input-group">
                             <label>Email Address</label>
-                            <input type="email" placeholder="Enter your email address">
+                            <input type="email" placeholder="Enter your email address" name="email" required>
+                        </div>
+
+                         <div class="input-group">
+                            <label>city</label>
+                            <input type="text" placeholder="Enter your city" name="city" required>
                         </div>
 
                     </div>
@@ -68,12 +86,12 @@ export function registerView() {
 
                         <div class="input-group">
                             <label>Password</label>
-                            <input type="password" placeholder="Create a password">
+                            <input type="password" placeholder="Create a password" name="password" required>
                         </div>
 
                         <div class="input-group">
-                            <label>Confirm Password</label>
-                            <input type="password" placeholder="Repeat your password">
+                            <label>NIT</label>
+                            <input type="number" placeholder="900123456" name="nit" required>
                         </div>
 
                     </div>
@@ -84,7 +102,7 @@ export function registerView() {
 
                         <label class="rol">
 
-                            <input type="radio" name="role">
+                            <input type="radio" name="role" value="runner">
 
                             <h4>Runner</h4>
 
@@ -94,7 +112,7 @@ export function registerView() {
 
                         <label class="rol">
 
-                            <input type="radio" name="role">
+                            <input type="radio" name="role" value="organizer">
 
                             <h4>Organizer</h4>
 
@@ -104,7 +122,7 @@ export function registerView() {
 
                         <label class="rol">
 
-                            <input type="radio" name="role">
+                            <input type="radio" name="role" value="sponsor">
 
                             <h4>Sponsor</h4>
 
@@ -149,4 +167,30 @@ export function registerView() {
 
         </div>
 `;
+}
+
+export function createUser() {
+  const formRegiste = document.getElementById("form-register");
+  formRegiste.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const { name, lastname, phone_number, email, city, password, nit, role } =
+      Object.fromEntries(new FormData(formRegiste));
+    const userCreated = await registerUser(
+      role,
+      name,
+      lastname,
+      email,
+      phone_number,
+      password,
+      nit,
+      city,
+    );
+    console.log(userCreated);
+    if (userCreated) {
+      alert("register");
+      history.pushState({}, "", "/");
+
+      router();
+    }
+  });
 }
