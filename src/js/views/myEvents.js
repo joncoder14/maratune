@@ -84,22 +84,27 @@ export async function renderEvents() {
   events.forEach((event) => {
     if (user.user.id === event.id_event_organizer) {
       eventContainer.innerHTML += `<article class="card-color">
-        
-                        <div class="event-card" >
-        
-        
-                            <div class="event-info">
-                                <h3>${event.name}</h3>
-                                <p>${event.city}</p>
-                                <p>${event.date_event}</p>
-                                <p>${event.cups}</p>
-                                
-                            </div>
-                            <div class="container-img">
-                                <img src="src/assets/logo/only-logo.png" width="200px" height="120px">
-                                
-        
-                            </div>
+
+                        <div class="event-card">
+
+                          <span id="status-on-card" class="status ${event.status}">
+                            ${event.status}
+                          </span>
+
+                          <div class="event-info">
+                            <h3>${event.name}</h3>
+                            <p><i id="icon-location" class="fa-solid fa-location-dot"></i> ${event.city}</p>
+                            <p><i id="icon-schedule" class="fa-regular fa-calendar"></i> ${event.date_event}</p>
+                            <p><i id="icon-people" class="fa-solid fa-people-group"></i> ${event.cups}</p>
+                          </div>
+
+                          <div class="container-img">
+                            <img
+                              src="src/assets/logo/only-logo.png"
+                              width="200px"
+                              height="120px">
+                          </div>
+
                         </div>
                         <div class="buttons">
         
@@ -167,19 +172,19 @@ export function editEvent() {
 
   btnsEdit.forEach((btn) => {
     btn.addEventListener("click", async () => {
-        id = btn.dataset.id;
+      id = btn.dataset.id;
 
-        const events = await getEvents()
-        const event = events.find(e => e.id_event == id)
+      const events = await getEvents()
+      const event = events.find(e => e.id_event == id)
 
-        formEdit.nameEvent.value = event.name
-        formEdit.description.value = event.description
-        formEdit.date_event.value = event.date_event
-        formEdit.date_time.value = event.date_time
-        formEdit.statusEvent.value = event.status
-        
+      formEdit.nameEvent.value = event.name
+      formEdit.description.value = event.description
+      formEdit.date_event.value = event.date_event
+      formEdit.date_time.value = event.date_time
+      formEdit.statusEvent.value = event.status
 
-        containerFather.classList.remove("hidden");
+
+      containerFather.classList.remove("hidden");
     });
   });
 

@@ -51,23 +51,25 @@
 
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 
+    padding-bottom: 60px;
+
 
 }
 
 .card-color{
     position: relative;
-
-    background:var(--surface);
-
-    border-radius:20px;
-
-    overflow:hidden;
-
-    transition:.3s;
-
+    background: var(--surface);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: .3s;
     margin-top: 50px;
-
     padding: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    min-height: 300px;
 }
 
 .card-color:hover{
@@ -77,48 +79,61 @@
 
 #status-on-card{
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 15px;
+    right: 15px;
     z-index: 999;
-    margin: 5px;
 }
 
 .buttons{
     display: flex;
-    justify-content: space-around;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.buttons button{
+    flex: 1;
 }
 
 .event-card{
-
     display: flex;
-
+    justify-content: space-between;
     align-items: center;
-
-
-
-
-
+    flex: 1;
+    gap: 15px;
 }
 
 .container-img{
     display: flex;
-    flex-direction: column;
-    gap: 3rem;
-    padding: 1rem;
+    justify-content: center;
     align-items: center;
+    width: 120px;
 }
 
-
-
 .event-info{
-
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    flex: 1;
+    padding: 20px;
+}
 
-    padding:20px;
+.event-info h3{
+    min-height: 60px;
+}
 
-    flex-direction:column;
+/* icons */
 
-    gap:10px;
+#icon-location{
+    color: var(--secondary-light);
+}
+
+#icon-schedule{
+    color: var(--accent-light);
+}
+
+#icon-people{
+    color: var(--primary-light);
 }
 
 #logout-btn{

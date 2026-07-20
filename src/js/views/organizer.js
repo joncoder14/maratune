@@ -220,9 +220,9 @@ export async function organizerEvents() {
 
             <div class="event-info">
               <h3>${event.name}</h3>
-              <p>${event.city}</p>
-              <p>${event.date_event}</p>
-              <p>${event.cups}</p>
+              <p><i id="icon-location" class="fa-solid fa-location-dot"></i> ${event.city}</p>
+              <p><i id="icon-schedule" class="fa-regular fa-calendar"></i> ${event.date_event}</p>
+              <p><i id="icon-people" class="fa-solid fa-people-group"></i> ${event.cups}</p>
             </div>
 
             <div class="container-img">
@@ -246,7 +246,7 @@ export async function organizerEvents() {
               View details
             </button>
 
-          </div>-
+          </div>
 
         </article>
       `;

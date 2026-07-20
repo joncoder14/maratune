@@ -6,7 +6,7 @@ import { registerUser } from "../services/userService";
 import { router } from "../routes/router";
 
 export function registerView() {
-  return `
+    return `
         <div class="register-container">
 
             
@@ -39,11 +39,6 @@ export function registerView() {
 
             <div class="right-panel">
 
-                <a href="../" data-link class="volver">
-                    <i class="fa-solid fa-arrow-left"></i>
-                    Back to Home
-                </a>
-
                 <h2>Create Your Account</h2>
 
                 <p class="subtitulo">
@@ -56,28 +51,17 @@ export function registerView() {
 
                         <div class="input-group">
                             <label>Name</label>
-                            <input type="text" placeholder="Enter your full name" name="name" required>
-                        </div>
-                         <div class="input-group">
-                            <label>Last Name</label>
-                            <input type="text" placeholder="Enter your Last name" name="lastname" required>
+                            <input type="text" name="name" required>
                         </div>
 
-                           <div class="input-group">
-                          
-                           <label>Phone Number</label>
-                          <input type="tel" placeholder="300 123 4567" name="phone_number"  required>
+                        <div class="input-group">
+                            <label>Last Name</label>
+                            <input type="text" name="lastname" required>
                         </div>
-                        
 
                         <div class="input-group">
                             <label>Email Address</label>
-                            <input type="email" placeholder="Enter your email address" name="email" required>
-                        </div>
-
-                         <div class="input-group">
-                            <label>city</label>
-                            <input type="text" placeholder="Enter your city" name="city" required>
+                            <input type="email" name="email" required>
                         </div>
 
                     </div>
@@ -85,13 +69,27 @@ export function registerView() {
                     <div class="row">
 
                         <div class="input-group">
-                            <label>Password</label>
-                            <input type="password" placeholder="Create a password" name="password" required>
+                            <label>Phone Number</label>
+                            <input type="tel" name="phone_number" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label>City</label>
+                            <input type="text" name="city" required>
                         </div>
 
                         <div class="input-group">
                             <label>NIT</label>
-                            <input type="number" placeholder="900123456" name="nit" required>
+                            <input type="number" name="nit" required>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="input-group full">
+                            <label>Password</label>
+                            <input type="password" name="password" required>
                         </div>
 
                     </div>
@@ -134,7 +132,7 @@ export function registerView() {
 
                     <div class="terminos">
 
-                        <input type="checkbox">
+                        <input type="checkbox" required>
 
                         <span>
                             I accept the
@@ -170,27 +168,27 @@ export function registerView() {
 }
 
 export function createUser() {
-  const formRegiste = document.getElementById("form-register");
-  formRegiste.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const { name, lastname, phone_number, email, city, password, nit, role } =
-      Object.fromEntries(new FormData(formRegiste));
-    const userCreated = await registerUser(
-      role,
-      name,
-      lastname,
-      email,
-      phone_number,
-      password,
-      nit,
-      city,
-    );
-    console.log(userCreated);
-    if (userCreated) {
-      alert("register");
-      history.pushState({}, "", "/");
+    const formRegiste = document.getElementById("form-register");
+    formRegiste.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const { name, lastname, phone_number, email, city, password, nit, role } =
+            Object.fromEntries(new FormData(formRegiste));
+        const userCreated = await registerUser(
+            role,
+            name,
+            lastname,
+            email,
+            phone_number,
+            password,
+            nit,
+            city,
+        );
+        console.log(userCreated);
+        if (userCreated) {
+            alert("register");
+            history.pushState({}, "", "/");
 
-      router();
-    }
-  });
+            router();
+        }
+    });
 }

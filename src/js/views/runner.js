@@ -100,7 +100,7 @@ export async function runnerEvents() {
                             </p>
 
                             <p>
-                                <i id="icon-dollar" class="fa-solid fa-dollar-sign"></i>
+                                <i id="icon-people" class="fa-solid fa-people-group"></i>
                                 ${event.cups}
                             </p>
 
