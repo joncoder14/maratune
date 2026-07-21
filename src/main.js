@@ -1,4 +1,4 @@
-import { router } from "./js/routes/router";
+import { router } from "./js/routes/router.js";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
 document.addEventListener("DOMContentLoaded", () => {

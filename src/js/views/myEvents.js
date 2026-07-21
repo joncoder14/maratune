@@ -1,8 +1,8 @@
 import "../../styles/global.css";
 import "../../styles/dashboard-events.css";
-import { router } from "../routes/router";
-import { getEvents, APIeditEvent, removeEvent } from "../services/eventService";
-import { logout } from "../services/logoutService";
+import { router } from "../routes/router.js";
+import { getEvents, APIeditEvent, removeEvent } from "../services/eventService.js";
+import { logout } from "../services/logoutService.js";
 
 export function myEventsView() {
   return `

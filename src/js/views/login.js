@@ -2,8 +2,8 @@
 import "../../styles/global.css"
 import "../../styles/login.css"
 import "../../styles/input.css"
-import { responseUser } from "../services/userService"
-import { router } from "../routes/router"
+import { responseUser } from "../services/userService.js"
+import { router } from "../routes/router.js"
 
 
 export function loginView(){

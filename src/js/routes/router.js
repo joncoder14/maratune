@@ -1,7 +1,7 @@
-import { loginView, loginEvents } from "../views/login";
-import { organizerView, organizerEvents } from "../views/organizer";
-import { runnerView, runnerEvents } from "../views/runner";
-import { sponsorView, sponsorEvents } from "../views/sponsor";
+import { loginView, loginEvents } from "../views/login.js";
+import { organizerView, organizerEvents } from "../views/organizer.js";
+import { runnerView, runnerEvents } from "../views/runner.js";
+import { sponsorView, sponsorEvents } from "../views/sponsor.js";
 import {
   myEventsView,
   myEventsEvents,

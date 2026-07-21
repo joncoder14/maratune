@@ -1,11 +1,11 @@
-import { getEvents, viewDetails } from "../services/eventService";
-import { newEvent } from "../services/eventService";
-import { searchEvents } from "../services/searchService";
+import { getEvents, viewDetails } from "../services/eventService.js";
+import { newEvent } from "../services/eventService.js";
+import { searchEvents } from "../services/searchService.js";
 import "../../styles/global.css";
 import "../../styles/input.css";
 import "../../styles/dashboard-events.css";
-import { logout } from "../services/logoutService";
-import { router } from "../routes/router";
+import { logout } from "../services/logoutService.js";
+import { router } from "../routes/router.js";
 import { dom } from "@fortawesome/fontawesome-svg-core";
 
 export function organizerView() {

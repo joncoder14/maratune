@@ -2,8 +2,8 @@ import "../../styles/global.css";
 import "../../styles/register.css";
 import "../../styles/input.css";
 import logoHorizontal from "../../assets/logo/logo-horizontal.png";
-import { registerUser } from "../services/userService";
-import { router } from "../routes/router";
+import { registerUser } from "../services/userService.js";
+import { router } from "../routes/router.js";
 
 export function registerView() {
     return `

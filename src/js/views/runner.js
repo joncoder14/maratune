@@ -1,10 +1,10 @@
-import { getEvents, viewDetails } from "../services/eventService";
-import { searchEvents } from "../services/searchService";
+import { getEvents, viewDetails } from "../services/eventService.js";
+import { searchEvents } from "../services/searchService.js";
 import "../../styles/global.css";
 import "../../styles/input.css";
 import "../../styles/dashboard-events.css";
-import { router } from "../routes/router";
-import { logout } from "../services/logoutService";
+import { router } from "../routes/router.js";
+import { logout } from "../services/logoutService.js";
 
 export function runnerView() {
   return `
