@@ -44,9 +44,7 @@ export function loginView(){
 
                 <button id="login-btn" type="submit">Log in</button>
 
-                <div class="division"><span>or continue with</span></div>
-
-                <div id="google"><img src="/src/assets/icons/google.png" width="25px"></div>        <!--agregarle la ruta-->
+                
             </form>
 
             <div id="register">

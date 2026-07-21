@@ -227,7 +227,7 @@ export async function organizerEvents() {
 
             <div class="container-img">
               <img
-                src="src/assets/logo/only-logo.png"
+                src="assets/logo/only-logo.png"
                 width="200px"
                 height="120px">
             </div>
