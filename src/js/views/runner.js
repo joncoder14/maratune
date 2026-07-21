@@ -5,7 +5,7 @@ import "../../styles/input.css";
 import "../../styles/dashboard-events.css";
 import { router } from "../routes/router.js";
 import { logout } from "../services/logoutService.js";
-
+import logo from "../../assets/logo/only-logo.png"
 export function runnerView() {
   return `
     <nav>
@@ -108,7 +108,7 @@ export async function runnerEvents() {
 
                         <div class="container-img">
                             <img
-                                src="assets/logo/only-logo.png"
+                                src="${logo}"
                                 width="200px"
                                 height="120px">
                         </div>
