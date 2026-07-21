@@ -8,6 +8,7 @@ import { logout } from "../services/logoutService.js";
 import { router } from "../routes/router.js";
 import { dom } from "@fortawesome/fontawesome-svg-core";
 
+
 export function organizerView() {
   return `
     <nav>
@@ -227,7 +228,7 @@ export async function organizerEvents() {
 
             <div class="container-img">
               <img
-                src="/assets/logo/only-logo-DKFadPRl.png"
+                src="../../assets/logo/only-logo.png"
                 width="200px"
                 height="120px">
             </div>
