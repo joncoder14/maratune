@@ -209,9 +209,7 @@ python -m fastapi dev app/main.py
 maratune/
 │   .env
 │   .gitignore
-│   index.html
 │   package-lock.json
-│   package.json
 │   README.md
 │   
 ├───app
@@ -222,17 +220,37 @@ maratune/
 │   ├───routers
 │   │   │   authentication_router.py
 │   │   │   event_router.py
+│   │   │   
+│   │   └───__pycache__
+│   │           authentication_router.cpython-312.pyc
+│   │           event_router.cpython-312.pyc
 │   │           
 │   ├───schemas
 │   │   │   event_schema.py
 │   │   │   user_schema.py
+│   │   │   
+│   │   └───__pycache__
+│   │           event_schema.cpython-312.pyc
+│   │           user_schema.cpython-312.pyc
 │   │           
 │   ├───services
 │   │   │   authentication_service.py
 │   │   │   event_service.py
+│   │   │   
+│   │   └───__pycache__
+│   │           authentication_service.cpython-312.pyc
+│   │           event_service.cpython-312.pyc
+│   │           
+│   └───__pycache__
+│           database.cpython-312.pyc
+│           main.cpython-312.pyc
 │           
 └───src
+    │   .gitignore
+    │   index.html
     │   main.js
+    │   package-lock.json
+    │   package.json
     │   
     ├───assets
     │   ├───icons
@@ -253,8 +271,8 @@ maratune/
     │   │       
     │   ├───services
     │   │       eventService.js
-    │   │       logoutservice.js
-    │   │       searchservice.js
+    │   │       logoutService.js
+    │   │       searchService.js
     │   │       userService.js
     │   │       
     │   └───views
